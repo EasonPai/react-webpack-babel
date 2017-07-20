@@ -7,15 +7,19 @@ import FlatButton from 'material-ui/FlatButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import Title from 'react-title-component';
+import AppBar from 'material-ui/AppBar';
+import Drawer from 'material-ui/Drawer';
+import MenuItem from 'material-ui/MenuItem';
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
 
 const styles = {
-	container: {
+	root: {
+		padding: 0,
 		textAlign: 'center',
-		paddingTop: 200,
 	},
 };
 
@@ -32,6 +36,7 @@ export default class App extends React.Component {
 
 		this.state = {
 			open: false,
+			drawerOpen: false,
 		};
 	}
 
@@ -47,6 +52,8 @@ export default class App extends React.Component {
 		});
 	}
 
+	toggleDrawer = () => this.setState({drawerOpen: !this.state.drawerOpen});
+
 	render() {
 
 		const standardActions = (
@@ -58,29 +65,37 @@ export default class App extends React.Component {
 		);
 
 		return (
-			<div>
-				<h1>It Works!</h1>
-				<p>This React project just works including <span className="redBg">module</span> local styles.</p>
-				<p>Enjoy!</p>
 				<MuiThemeProvider muiTheme={muiTheme}>
-					<div style={styles.container}>
+					<div style={styles.root}>
+						<Drawer
+							docked={false}
+							open={this.state.drawerOpen}
+							onRequestChange={(drawerOpen) => this.setState({drawerOpen})}
+							>
+							<MenuItem onTouchTap={this.toggleDrawer}>Menu Item</MenuItem>
+							<MenuItem onTouchTap={this.toggleDrawer}>Menu Item 2</MenuItem>
+						</Drawer>
+						<AppBar
+							title="Title"
+							onLeftIconButtonTouchTap={this.toggleDrawer}
+						/>
+						<Title render="App" />
 						<Dialog
 							open={this.state.open}
-							title="Super Secret Password"
+							title="Dialog Title"
 							actions={standardActions}
 							onRequestClose={this.handleRequestClose}>
-							1-2-3-4-5
+							Dialog Content
 						</Dialog>
 						<h1>Material-UI</h1>
 						<h2>example project</h2>
 						<RaisedButton
-							label="Super Secret Password"
+							label="Toggle Dialog"
 							secondary={true}
 							onTouchTap={this.handleTouchTap}
 						/>
 					</div>
 				</MuiThemeProvider>
-			</div>
 		)
 	}
 }
