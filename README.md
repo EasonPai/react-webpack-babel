@@ -3,7 +3,7 @@ Simple React Webpack Babel Starter Kit
 
 Tired of complicated starters with 200MB of dependencies which are hard to understand and modify?
 
-Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/) and [Babel](https://babeljs.io/) application with nothing else in it.
+Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http://webpack.github.io/), [Babel](https://babeljs.io/) and [Material-UI](http://www.material-ui.com) application with nothing else in it.
 
 ### What's in it?
 
@@ -12,6 +12,7 @@ Try this is a simple [React](https://facebook.github.io/react/), [Webpack](http:
 * CSS module loading, so you can include your css by ```import styles from './path/to.css';```.
 * Both js(x) and css hot loaded during development.
 * [Webpack Dashboard Plugin](https://github.com/FormidableLabs/webpack-dashboard) on dev server.
+* [Material-UI](http://www.material-ui.com/) : A Set of React Components that Implement Google's Material Design
 
 ### To run
 
